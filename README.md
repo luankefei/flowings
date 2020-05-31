@@ -1,6 +1,16 @@
 # flowings
 
-> libray to frontend image synthesis & 2d canvas renderer
+libray to frontend image synthesis & 2d canvas renderer
+
+### TODO
+
+接下来会先做功能模块划分和 API 设计，目前已知至少会支持以下特性
+
+- 绘图元素合成、导出
+- 不同速率的动画队列
+- 滤镜
+- 碰撞检测
+- WebGL
 
 ### 代码目录规划，参考 golang-canvas 和 not-snow-mountain
 
