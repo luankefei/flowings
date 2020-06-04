@@ -14,9 +14,10 @@ const config = {
     // sourcemaps(),
   ],
   output: {
-    name: '$',
+    name: '_',
     file: 'dist/index.js',
     format: 'iife',
+    sourcemap: true,
   },
 };
 
