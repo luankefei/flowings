@@ -24,3 +24,10 @@ test('new Flowings to get context type', () => {
   const flowings = new Flowings();
   expect(flowings.context.constructor).toBe(CanvasRenderingContext2D);
 });
+
+test('Flowing.canvas has property sprites with array type', () => {
+  const flowings = new Flowings();
+  expect(Object.prototype.toString.call(flowings.sprites)).toBe(
+    '[object Array]'
+  );
+});
