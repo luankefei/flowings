@@ -12,6 +12,8 @@ class Flowings {
     this.canvas = id
       ? getCanvasElementById(id)
       : createCanvas(screen.availWidth, screen.availHeight);
+    this.context = getCanvasRenderingContext2D(this.canvas);
+    this.sprites = [];
   }
 }
 
@@ -27,6 +29,17 @@ function getCanvasElementById(id: string) {
   return canvas;
 }
 
+// 获取绘图上下文
+function getCanvasRenderingContext2D(node: HTMLCanvasElement) {
+  const context = node.getContext("2d");
+  if (context === null) {
+    throw new Error(
+      "This browser does not support 2-dimensional canvas rendering contexts."
+    );
+  }
+  return context;
+}
+
 // 创建画布
 function createCanvas(width: number, height: number) {
   const node = document.createElement("canvas");
@@ -37,3 +50,5 @@ function createCanvas(width: number, height: number) {
 
   return node;
 }
+
+export default Flowings;
