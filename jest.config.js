@@ -1,8 +1,7 @@
-// await (babel.loadPartialConfigAsync || babel.loadPartialConfig)(args);
-
 export default {
   // module.exports = {
   // testEnvironment: "jest-environment-jsdom-fourteen",
+  testMatch: ['<rootDir>/__test__/**/*.spec.js'],
   testEnvironment: 'jsdom',
 
   // testEnvironment: "node",

@@ -1,7 +1,7 @@
 // babel.config.js
 
-// module.exports = (api) => {
-export default (api) => {
+module.exports = (api) => {
+  // export default (api) => {
   const isTest = api.env('test');
   return {
     presets: [

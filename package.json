@@ -4,12 +4,15 @@
   "description": "libray to frontend image synthesis & 2d canvas renderer",
   "main": "dist/index.js",
   "exports": "dist/index.js",
+  "directories": {
+    "test": "__test__"
+  },
   "engines": {
     "node": ">=14"
   },
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage --es-module-specifier-resolution=node",
     "test:watch": "npm test -- --watch",
     "coverage": "npm test -- --coverage",
     "format": "prettier --parser typescript --write \"src/**/*.ts\"",
