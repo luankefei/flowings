@@ -4,7 +4,7 @@
  * 绘图合并相关的定义文件
  */
 
-// Basic:  createImage 接口的第一个参数
+// Basic: createImage 接口的第一个参数
 interface Basic {
   width;
   height;
