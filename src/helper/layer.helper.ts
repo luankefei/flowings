@@ -22,3 +22,5 @@ class LayerHelper {
     this.renderQueue = [];
   }
 }
+
+export default LayerHelper;
