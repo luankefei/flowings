@@ -60,6 +60,7 @@ interface Line {
   y1;
   x2;
   y2;
+  z;
   line_width: number;
   color: string;
   dashed: boolean;
@@ -69,6 +70,7 @@ interface Line {
 interface Rect {
   x;
   y;
+  z;
   width;
   height: number;
   name;
