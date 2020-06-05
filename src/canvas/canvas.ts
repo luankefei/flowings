@@ -10,3 +10,5 @@ function createImage(basic: Basic, params: ICreateImageParam) {
   console.log("basic", basic);
   console.log("params", params);
 }
+
+export { createImage };

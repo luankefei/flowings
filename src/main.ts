@@ -4,6 +4,8 @@
  * 绘图库入口文件
  * 核心设计思路是，尽量贴近原生API。只做必要的限制，功能在原生 canvas 上进行增强
  */
+import { createImage } from "./canvas/canvas";
+
 class Flowings {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
@@ -53,4 +55,5 @@ function createCanvas(width: number, height: number) {
   return node;
 }
 
+export { createImage };
 export default Flowings;
