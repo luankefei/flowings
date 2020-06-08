@@ -5,11 +5,11 @@
  */
 
 class LayerHelper {
-  layers: LayerWrapper[];
+  layers: LayerWrapper;
   renderQueue: LayerElement[]; // 排序后准备渲染的队列
 
   constructor() {
-    this.layers = [];
+    this.layers = {};
     this.renderQueue = [];
   }
 

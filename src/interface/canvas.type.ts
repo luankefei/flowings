@@ -82,8 +82,8 @@ type LayerElement = Image | Text | Line | Rect;
 
 // 默认先画图片，其次矩形 > 线条 > 文字
 interface LayerWrapper {
-  images: Image[];
-  rects: Rect[];
-  lines: Line[];
-  texts: Text[];
+  images?: Image[];
+  rects?: Rect[];
+  lines?: Line[];
+  texts?: Text[];
 }
