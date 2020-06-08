@@ -4,12 +4,12 @@
  * 绘图合并相关的定义文件
  */
 
-export interface DrawElement {
+export interface IDrawElement {
   draw: (ctx: CanvasRenderingContext2D) => undefined;
 }
 
 // Basic: createImage 接口的第一个参数
-export interface Basic {
+export interface IBasic {
   width;
   height;
   image_type: number;
@@ -21,7 +21,7 @@ export interface Basic {
 }
 
 // Image: 图片元素的配置
-export interface Image extends DrawElement {
+export interface IImage extends IDrawElement {
   x;
   y;
   z;
@@ -32,11 +32,11 @@ export interface Image extends DrawElement {
   name;
   image_url: string;
   resize: boolean;
-  clip: Clip | undefined;
+  clip: IClip | undefined;
 }
 
 // Clip: 图片元素的裁剪配置
-export interface Clip {
+export interface IClip {
   x;
   y;
   width;
@@ -44,7 +44,7 @@ export interface Clip {
 }
 
 // Text: 文字元素的绘图配置
-export interface Text extends DrawElement {
+export interface IText extends IDrawElement {
   x;
   y;
   z;
@@ -59,7 +59,7 @@ export interface Text extends DrawElement {
 }
 
 // Line: 线条元素的绘制配置
-export interface Line extends DrawElement {
+export interface ILine extends IDrawElement {
   x1;
   y1;
   x2;
@@ -71,7 +71,7 @@ export interface Line extends DrawElement {
 }
 
 // Rect: 矩形元素的绘制配置
-export interface Rect extends DrawElement {
+export interface IRect extends IDrawElement {
   x;
   y;
   z;
@@ -82,12 +82,12 @@ export interface Rect extends DrawElement {
   radius: number[];
 }
 
-export type LayerElement = Image | Text | Line | Rect;
+export type ILayerElement = IImage | IText | ILine | IRect;
 
 // 默认先画图片，其次矩形 > 线条 > 文字
-export interface LayerWrapper {
-  images?: Image[];
-  rects?: Rect[];
-  lines?: Line[];
-  texts?: Text[];
+export interface ILayerWrapper {
+  images?: IImage[];
+  rects?: IRect[];
+  lines?: ILine[];
+  texts?: IText[];
 }

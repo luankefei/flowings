@@ -6,9 +6,10 @@
  */
 
 import LayerHelper from "../helper/layer.helper";
+import { IBasic, ILayerWrapper } from "../interface/canvas.type";
 
 // createImage: 对外暴露的合并图层API
-function createImage(basic: Basic, params: LayerWrapper) {
+function createImage(basic: IBasic, params: ILayerWrapper) {
   // console.log("basic", basic);
   // console.log("params", params);
 

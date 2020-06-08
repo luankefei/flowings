@@ -3,6 +3,8 @@
  *
  *  用于多绘图元素的图层合并
  */
+import lib from "../lib";
+
 import {
   LayerWrapper,
   LayerElement,
@@ -61,6 +63,14 @@ class LayerHelper {
     this.locked = false;
 
     // 根据类型进行实例化
+    const instancedLayers = lib.deepClone(this.layers);
+    if (instancedLayers.images) {
+      instancedLayers.images = instancedLayers.images.map((item) => item);
+    }
+
+    if (instancedLayers.texts) {
+      instancedLayers.texts = instancedLayers.texts.map((item) => item);
+    }
 
     // 从layer生成渲染队列, 默认先画图片，其次矩形 > 线条 > 文字
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
