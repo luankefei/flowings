@@ -7,6 +7,8 @@ import {
   LayerWrapper,
   LayerElement,
   DrawElement,
+  Image,
+  Text,
 } from "../interface/canvas.type";
 
 class LayerHelper {
@@ -57,6 +59,8 @@ class LayerHelper {
   prepareToRender() {
     // 解锁
     this.locked = false;
+
+    // 根据类型进行实例化
 
     // 从layer生成渲染队列, 默认先画图片，其次矩形 > 线条 > 文字
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
