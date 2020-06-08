@@ -6,7 +6,7 @@
  */
 
 // createImage: 对外暴露的合并图层API
-function createImage(basic: Basic, params: ICreateImageParam) {
+function createImage(basic: Basic, params: LayerWrapper) {
   console.log("basic", basic);
   console.log("params", params);
 }

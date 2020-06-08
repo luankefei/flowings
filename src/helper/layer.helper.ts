@@ -5,7 +5,7 @@
  */
 
 class LayerHelper {
-  layers: LayerElement[];
+  layers: LayerWrapper[];
   renderQueue: LayerElement[]; // 排序后准备渲染的队列
 
   constructor() {
@@ -15,7 +15,7 @@ class LayerHelper {
 
   // 根据z轴排序，其他元素位置保持不变
   sort() {
-    const array = this.layers.slice(0);
+    const array = this.renderQueue.slice(0);
     array.sort((a, b) => {
       a.z = a.z || 0;
       b.z = b.z || 0;
@@ -25,7 +25,7 @@ class LayerHelper {
       return 0;
     });
 
-    this.layers = array;
+    this.renderQueue = array;
   }
 
   // 执行渲染，清空渲染队列

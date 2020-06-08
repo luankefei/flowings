@@ -11,7 +11,7 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
   });
 
   it('layers will be sorted by field "z" automatically', () => {
-    layerHelper.layers = [
+    layerHelper.renderQueue = [
       { x: 0 },
       { x: 1, z: 100 },
       { x: 2, z: 1 },
@@ -22,12 +22,11 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
 
     layerHelper.sort();
 
-    const sortedState = layerHelper.layers.every((item, index) => {
-      return (
-        index === layerHelper.layers.length - 1 ||
-        item.z >= layerHelper.layers[index + 1].z
-      );
-    });
+    const sortedState = layerHelper.renderQueue.every(
+      (item, index) =>
+        index === layerHelper.renderQueue.length - 1 ||
+        item.z >= layerHelper.renderQueue[index + 1].z
+    );
 
     expect(sortedState).toBeTruthy();
   });

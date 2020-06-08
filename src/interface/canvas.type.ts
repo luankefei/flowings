@@ -81,7 +81,7 @@ interface Rect {
 type LayerElement = Image | Text | Line | Rect;
 
 // 默认先画图片，其次矩形 > 线条 > 文字
-interface ICreateImageParam {
+interface LayerWrapper {
   images: Image[];
   rects: Rect[];
   lines: Line[];
