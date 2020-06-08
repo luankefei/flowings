@@ -14,6 +14,12 @@ class LayerHelper {
     this.layers = {};
     this.renderQueue = [];
     this.sortedState = false;
+
+    return new Proxy(this, {
+      set(target, name, value) {
+        throw new Error(`cannot set the ${name.toString()} property`);
+      },
+    });
   }
 
   // 根据z轴排序，其他元素位置保持不变
