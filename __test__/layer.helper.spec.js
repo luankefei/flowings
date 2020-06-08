@@ -10,7 +10,7 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
   it('the instance has property layers, is plain object', () => {
     const obj = layerHelper.layers;
     const isPlainObject =
-      typeof obj === 'object' && obj !== null && !obj.constructor;
+      typeof obj === 'object' && obj !== null && obj.constructor === Object;
     expect(isPlainObject).toBeTruthy();
   });
 
