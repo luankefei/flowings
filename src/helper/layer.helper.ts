@@ -25,9 +25,9 @@ class LayerHelper {
         return Reflect.get(target, name);
       },
       set(target, name, value) {
-        const setable = ["layers"];
-        if (!setable.includes(name.toString()) && this.locked) {
-          throw new Error(`cannot set the ${name.toString()} property`);
+        const setable = ["layers", "locked", "sortedState"];
+        if (!setable.includes(name.toString()) && target.locked) {
+          throw new TypeError(`cannot set the ${name.toString()} property`);
         }
         target[name] = value;
         return true;
@@ -58,7 +58,7 @@ class LayerHelper {
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
       const queue = ["images", "rects", "lines", "texts"];
       this.renderQueue = queue.reduce(
-        (prev, curr) => prev.concat(curr || []),
+        (prev, key) => prev.concat(this.layers[key] || []),
         []
       );
     }
@@ -77,7 +77,7 @@ class LayerHelper {
   render(ctx: CanvasRenderingContext2D) {
     // before render
     this.prepareToRender();
-    console.log("TODO: 执行渲染，清空渲染队列");
+    console.log("TODO: 执行渲染，清空渲染队列", this.renderQueue);
     this.renderQueue = [];
   }
 }
