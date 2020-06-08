@@ -15,9 +15,15 @@ class LayerHelper {
     this.renderQueue = [];
     this.sortedState = false;
 
+    // 只允许修改 layers
     return new Proxy(this, {
       set(target, name, value) {
-        throw new Error(`cannot set the ${name.toString()} property`);
+        const setable = ["layers"];
+        if (!setable.includes(name.toString())) {
+          throw new Error(`cannot set the ${name.toString()} property`);
+        }
+        target[name] = value;
+        return true;
       },
     });
   }
