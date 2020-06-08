@@ -6,16 +6,19 @@
 import lib from "../lib";
 
 import {
-  LayerWrapper,
-  LayerElement,
-  DrawElement,
-  Image,
-  Text,
+  ILayerWrapper,
+  ILayerElement,
+  IDrawElement,
+  IImage,
+  IText,
 } from "../interface/canvas.type";
 
+import CImage from "../canvas/image";
+import CText from "../canvas/text";
+
 class LayerHelper {
-  layers: LayerWrapper;
-  renderQueue: LayerElement[]; // 排序后准备渲染的队列
+  layers: ILayerWrapper;
+  renderQueue: ILayerElement[]; // 排序后准备渲染的队列
   sortedState: boolean;
   private locked: boolean; // this only enforced within the compiler
 
@@ -65,11 +68,15 @@ class LayerHelper {
     // 根据类型进行实例化
     const instancedLayers = lib.deepClone(this.layers);
     if (instancedLayers.images) {
-      instancedLayers.images = instancedLayers.images.map((item) => item);
+      instancedLayers.images = instancedLayers.images.map(
+        (item) => new CImage(item)
+      );
     }
 
     if (instancedLayers.texts) {
-      instancedLayers.texts = instancedLayers.texts.map((item) => item);
+      instancedLayers.texts = instancedLayers.texts.map(
+        (item) => new CText(item)
+      );
     }
 
     // 从layer生成渲染队列, 默认先画图片，其次矩形 > 线条 > 文字
@@ -99,7 +106,7 @@ class LayerHelper {
 
     // 根据 task 的类型进行渲染
     for (const task of this.renderQueue) {
-      (task as DrawElement).draw(ctx);
+      (task as IDrawElement).draw(ctx);
       console.log(task);
     }
   }

@@ -2,8 +2,8 @@
  * 文字绘制
  */
 class CText {
-  constructor() {
-    console.log("text constructor");
+  constructor(props) {
+    console.log("text constructor", props);
   }
   draw(ctx: CanvasRenderingContext2D) {
     console.log("draw text");

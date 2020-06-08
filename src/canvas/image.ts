@@ -2,8 +2,8 @@
  * 图片绘制
  */
 class CImage {
-  constructor() {
-    console.log("image constructor");
+  constructor(props) {
+    console.log("image constructor", props);
   }
 
   draw(ctx: CanvasRenderingContext2D) {
