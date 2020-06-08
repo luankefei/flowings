@@ -78,7 +78,12 @@ class LayerHelper {
     // before render
     this.prepareToRender();
     console.log("TODO: 执行渲染，清空渲染队列", this.renderQueue);
-    this.renderQueue = [];
+
+    // 根据 task 的类型进行渲染
+    for (const task of this.renderQueue) {
+      task.Draw();
+      console.log(task);
+    }
   }
 }
 
