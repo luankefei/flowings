@@ -3,11 +3,15 @@ import LayerHelper from '../src/helper/layer.helper';
 describe('LayerHelper 用于多绘图元素的图层合并', () => {
   const layerHelper = new LayerHelper();
 
-  it('the instance has properties layers & renderQueue, typed array', () => {
-    expect(
-      Array.isArray(layerHelper.layers) &&
-        Array.isArray(layerHelper.renderQueue)
-    ).toBeTruthy();
+  it('the instance has properties renderQueue, typed array', () => {
+    expect(Array.isArray(layerHelper.renderQueue)).toBeTruthy();
+  });
+
+  it('the instance has property layers, is plain object', () => {
+    const obj = layerHelper.layers;
+    const isPlainObject =
+      typeof obj === 'object' && obj !== null && !obj.constructor;
+    expect(isPlainObject).toBeTruthy();
   });
 
   it('layers will be sorted by field "z" automatically', () => {
