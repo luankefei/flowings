@@ -3,7 +3,11 @@
  *
  *  用于多绘图元素的图层合并
  */
-import { LayerWrapper, LayerElement } from "../interface/canvas.type";
+import {
+  LayerWrapper,
+  LayerElement,
+  DrawElement,
+} from "../interface/canvas.type";
 
 class LayerHelper {
   layers: LayerWrapper;
@@ -81,7 +85,7 @@ class LayerHelper {
 
     // 根据 task 的类型进行渲染
     for (const task of this.renderQueue) {
-      task.Draw();
+      (task as DrawElement).draw(ctx);
       console.log(task);
     }
   }

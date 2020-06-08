@@ -4,6 +4,10 @@
  * 绘图合并相关的定义文件
  */
 
+export interface DrawElement {
+  draw: (ctx: CanvasRenderingContext2D) => undefined;
+}
+
 // Basic: createImage 接口的第一个参数
 export interface Basic {
   width;
@@ -17,7 +21,7 @@ export interface Basic {
 }
 
 // Image: 图片元素的配置
-export interface Image {
+export interface Image extends DrawElement {
   x;
   y;
   z;
@@ -40,7 +44,7 @@ export interface Clip {
 }
 
 // Text: 文字元素的绘图配置
-export interface Text {
+export interface Text extends DrawElement {
   x;
   y;
   z;
@@ -55,7 +59,7 @@ export interface Text {
 }
 
 // Line: 线条元素的绘制配置
-export interface Line {
+export interface Line extends DrawElement {
   x1;
   y1;
   x2;
@@ -67,7 +71,7 @@ export interface Line {
 }
 
 // Rect: 矩形元素的绘制配置
-export interface Rect {
+export interface Rect extends DrawElement {
   x;
   y;
   z;
