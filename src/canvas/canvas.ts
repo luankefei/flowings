@@ -9,8 +9,8 @@ import LayerHelper from "../helper/layer.helper";
 
 // createImage: 对外暴露的合并图层API
 function createImage(basic: Basic, params: LayerWrapper) {
-  console.log("basic", basic);
-  console.log("params", params);
+  // console.log("basic", basic);
+  // console.log("params", params);
 
   // 这里打算做成 layerHelper 的语法糖
   const helper = new LayerHelper();

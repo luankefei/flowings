@@ -9,17 +9,24 @@ class LayerHelper {
   layers: LayerWrapper;
   renderQueue: LayerElement[]; // 排序后准备渲染的队列
   sortedState: boolean;
+  private locked: boolean; // this only enforced within the compiler
 
   constructor() {
     this.layers = {};
     this.renderQueue = [];
     this.sortedState = false;
+    this.locked = true;
 
     // 只允许修改 layers
     return new Proxy(this, {
+      get(target, name) {
+        const privates = ["locked"];
+        if (privates.includes(name.toString())) return undefined;
+        return Reflect.get(target, name);
+      },
       set(target, name, value) {
         const setable = ["layers"];
-        if (!setable.includes(name.toString())) {
+        if (!setable.includes(name.toString()) && this.locked) {
           throw new Error(`cannot set the ${name.toString()} property`);
         }
         target[name] = value;
@@ -44,6 +51,9 @@ class LayerHelper {
   }
 
   prepareToRender() {
+    // 解锁
+    this.locked = false;
+
     // 从layer生成渲染队列, 默认先画图片，其次矩形 > 线条 > 文字
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
       const queue = ["images", "rects", "lines", "texts"];
@@ -58,6 +68,9 @@ class LayerHelper {
       this.sortedState = true;
       this.sort();
     }
+
+    // 人性的枷锁
+    this.locked = true;
   }
 
   // 执行渲染，清空渲染队列
