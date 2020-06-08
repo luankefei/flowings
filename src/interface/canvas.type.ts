@@ -5,7 +5,7 @@
  */
 
 // Basic: createImage 接口的第一个参数
-interface Basic {
+export interface Basic {
   width;
   height;
   image_type: number;
@@ -17,7 +17,7 @@ interface Basic {
 }
 
 // Image: 图片元素的配置
-interface Image {
+export interface Image {
   x;
   y;
   z;
@@ -32,7 +32,7 @@ interface Image {
 }
 
 // Clip: 图片元素的裁剪配置
-interface Clip {
+export interface Clip {
   x;
   y;
   width;
@@ -40,7 +40,7 @@ interface Clip {
 }
 
 // Text: 文字元素的绘图配置
-interface Text {
+export interface Text {
   x;
   y;
   z;
@@ -55,7 +55,7 @@ interface Text {
 }
 
 // Line: 线条元素的绘制配置
-interface Line {
+export interface Line {
   x1;
   y1;
   x2;
@@ -67,7 +67,7 @@ interface Line {
 }
 
 // Rect: 矩形元素的绘制配置
-interface Rect {
+export interface Rect {
   x;
   y;
   z;
@@ -78,10 +78,10 @@ interface Rect {
   radius: number[];
 }
 
-type LayerElement = Image | Text | Line | Rect;
+export type LayerElement = Image | Text | Line | Rect;
 
 // 默认先画图片，其次矩形 > 线条 > 文字
-interface LayerWrapper {
+export interface LayerWrapper {
   images?: Image[];
   rects?: Rect[];
   lines?: Line[];
