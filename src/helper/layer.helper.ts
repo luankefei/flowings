@@ -24,6 +24,8 @@ class LayerHelper {
 
       return 0;
     });
+
+    this.layers = array;
   }
 
   // 执行渲染，清空渲染队列

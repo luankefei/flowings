@@ -21,5 +21,14 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
     ];
 
     layerHelper.sort();
+
+    const sortedState = layerHelper.layers.every((item, index) => {
+      return (
+        index === layerHelper.layers.length - 1 ||
+        item.z >= layerHelper.layers[index + 1].z
+      );
+    });
+
+    expect(sortedState).toBeTruthy();
   });
 });
