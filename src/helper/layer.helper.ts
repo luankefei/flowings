@@ -83,7 +83,7 @@ class LayerHelper {
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
       const queue = ["images", "rects", "lines", "texts"];
       this.renderQueue = queue.reduce(
-        (prev, key) => prev.concat(this.layers[key] || []),
+        (prev, key) => prev.concat(instancedLayers[key] || []),
         []
       );
     }

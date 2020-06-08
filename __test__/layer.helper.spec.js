@@ -48,6 +48,6 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
   });
 
   it('test render', () => {
-    expect(() => layerHelper.render()).toThrow(TypeError);
+    expect(() => layerHelper.render()).not.toThrow();
   });
 });
