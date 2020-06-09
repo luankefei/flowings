@@ -1,7 +1,9 @@
 import LayerHelper from '../src/helper/layer.helper';
+import Flowings from '../src/main';
 
 describe('LayerHelper 用于多绘图元素的图层合并', () => {
   const layerHelper = new LayerHelper();
+  const { canvas, context } = new Flowings();
 
   it('the instance has properties renderQueue, typed array', () => {
     expect(Array.isArray(layerHelper.renderQueue)).toBeTruthy();
@@ -21,7 +23,7 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
   it('layers will be sorted by field "z" automatically', () => {
     layerHelper.layers = {
       images: [
-        { x: 0 },
+        { x: 0, image_url: 'http://a.com' },
         { x: 1, z: 100 },
         { x: 2, z: 1 },
         { x: 3, z: 50 },
@@ -32,6 +34,7 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
         {
           x: 6,
           z: 2,
+          content: '我爱北京天安门',
         },
       ],
     };
@@ -48,6 +51,6 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
   });
 
   it('test render', () => {
-    expect(() => layerHelper.render()).not.toThrow();
+    expect(() => layerHelper.render(context)).not.toThrow();
   });
 });

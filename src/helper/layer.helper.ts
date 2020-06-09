@@ -69,13 +69,13 @@ class LayerHelper {
     const instancedLayers = lib.deepClone(this.layers);
     if (instancedLayers.images) {
       instancedLayers.images = instancedLayers.images.map(
-        (item) => new CImage(item)
+        (item: IImage) => new CImage(item)
       );
     }
 
     if (instancedLayers.texts) {
       instancedLayers.texts = instancedLayers.texts.map(
-        (item) => new CText(item)
+        (item: IText) => new CText(item)
       );
     }
 
@@ -102,13 +102,15 @@ class LayerHelper {
   render(ctx: CanvasRenderingContext2D) {
     // before render
     this.prepareToRender();
-    console.log("TODO: 执行渲染，清空渲染队列", this.renderQueue);
 
     // 根据 task 的类型进行渲染
+    // TODO: 现在的渲染是阻塞式的，动画可能需要调整
     for (const task of this.renderQueue) {
-      (task as IDrawElement).draw(ctx);
-      console.log(task);
+      ((task as unknown) as IDrawElement).draw(ctx);
     }
+
+    // 清空渲染队列
+    this.renderQueue = [];
   }
 }
 
