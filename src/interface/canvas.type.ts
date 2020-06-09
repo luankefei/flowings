@@ -33,6 +33,7 @@ export interface IImage {
   image_url: string;
   resize: boolean;
   clip: IClip | undefined;
+  buffer: HTMLImageElement | undefined;
 }
 
 // Clip: 图片元素的裁剪配置

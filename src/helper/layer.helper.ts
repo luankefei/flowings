@@ -110,7 +110,9 @@ class LayerHelper {
     }
 
     // 清空渲染队列
+    this.locked = false;
     this.renderQueue = [];
+    this.locked = true;
   }
 }
 

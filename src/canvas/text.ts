@@ -27,6 +27,8 @@ class CText implements IText {
   }
 }
 
+export default CText;
+
 // const withText = <T extends Constructor<IText>>(Base: T) =>
 //   class extends Base {
 //     constructor(...props) {
@@ -39,5 +41,3 @@ class CText implements IText {
 //       ctx.fillText(this.content, this.x, this.y);
 //     }
 //   };
-
-export default CText;

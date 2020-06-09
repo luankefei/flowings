@@ -23,7 +23,11 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
   it('layers will be sorted by field "z" automatically', () => {
     layerHelper.layers = {
       images: [
-        { x: 0, image_url: 'http://a.com' },
+        {
+          x: 0,
+          image_url:
+            'https://img.laiye.com/checkinAlbum_20200316083737_htqvLACrln.jpg',
+        },
         { x: 1, z: 100 },
         { x: 2, z: 1 },
         { x: 3, z: 50 },
