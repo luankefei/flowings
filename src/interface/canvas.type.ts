@@ -10,26 +10,26 @@ export interface IDrawElement {
 
 // Basic: createImage 接口的第一个参数
 export interface IBasic {
-  width;
-  height;
+  width: number;
+  height: number;
   image_type: number;
-  file_name;
-  business_name;
-  wechat_openid;
+  file_name: string;
+  business_name: string;
+  wechat_openid: string;
   trace_id: string;
   send: boolean;
 }
 
 // Image: 图片元素的配置
-export interface IImage extends IDrawElement {
-  x;
-  y;
-  z;
-  width;
-  height;
-  expire;
+export interface IImage {
+  x: number;
+  y: number;
+  z: number;
+  width: number;
+  height: number;
+  expire: number;
   border_radius: number;
-  name;
+  name: string;
   image_url: string;
   resize: boolean;
   clip: IClip | undefined;
@@ -37,29 +37,29 @@ export interface IImage extends IDrawElement {
 
 // Clip: 图片元素的裁剪配置
 export interface IClip {
-  x;
-  y;
-  width;
+  x: number;
+  y: number;
+  width: number;
   height: number;
 }
 
 // Text: 文字元素的绘图配置
-export interface IText extends IDrawElement {
-  x;
-  y;
-  z;
-  size;
-  line_height;
-  font_style;
-  align;
+export interface IText {
+  x: number;
+  y: number;
+  z: number;
+  size: number;
+  line_height: number;
+  font_style: number;
+  align: number;
   limit: number;
-  color;
-  font_family;
+  color: string;
+  font_family: string;
   content: string;
 }
 
 // Line: 线条元素的绘制配置
-export interface ILine extends IDrawElement {
+export interface ILine {
   x1;
   y1;
   x2;
@@ -71,7 +71,7 @@ export interface ILine extends IDrawElement {
 }
 
 // Rect: 矩形元素的绘制配置
-export interface IRect extends IDrawElement {
+export interface IRect {
   x;
   y;
   z;
@@ -91,3 +91,5 @@ export interface ILayerWrapper {
   lines?: ILine[];
   texts?: IText[];
 }
+
+export type Constructor<T> = new (...args: any[]) => T;
