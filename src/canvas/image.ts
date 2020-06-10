@@ -33,6 +33,21 @@ class CImage {
     // 设置全局透明度
     ctx.globalAlpha = this.opacity;
 
+    let startX = 0;
+    let startY = 0;
+    let imageWidth = this.buffer.width;
+    let imageHeight = this.buffer.height;
+
+    // 画布旋转，画布旋转后坐标需重新计算
+    if (this.rotate) {
+      ctx.beginPath();
+      ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+      ctx.rotate((this.rotate * Math.PI) / 180);
+
+      this.x = -this.width / 2;
+      this.y = -this.height / 2;
+    }
+
     // 圆角
     if (this.border_radius) {
       this.clipRound(
@@ -45,22 +60,13 @@ class CImage {
       );
     }
 
-    let startX = 0;
-    let startY = 0;
-    let imageWidth = this.buffer.width;
-    let imageHeight = this.buffer.height;
-
+    // 图片裁剪
     if (this.clip) {
       startX = this.clip.x;
       startY = this.clip.y;
 
       imageWidth = imageWidth - (this.buffer.width - this.clip.width);
       imageHeight = imageHeight - (this.buffer.height - this.clip.height);
-    }
-
-    // 画布旋转
-    if (this.rotate) {
-      ctx.rotate(this.rotate);
     }
 
     // 最好能把加载流程和绘图流程分割开
@@ -78,6 +84,18 @@ class CImage {
 
     ctx.restore();
   }
+
+  // getRotatePos(x: number, y: number, angle: number) {
+
+  //   // x = x * Math.cos(angle) * x - x * Math.sin(angle) * y + 0;
+  //   // y = y * Math.cos(angle) + x * Math.sin(angle);
+  //   // y = Math.sin(angle) * x + Math.cos(angle) * y + 0;
+
+  //   return {
+  //     x,
+  //     y,
+  //   };
+  // }
 
   clipRound(
     ctx: CanvasRenderingContext2D,
