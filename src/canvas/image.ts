@@ -1,7 +1,7 @@
 /**
  * 图片绘制
  */
-import { IImage, IClip } from "../interface/canvas.type";
+import { IImage, IClip } from '../interface/canvas.type';
 
 class CImage {
   x = 0;
@@ -11,8 +11,8 @@ class CImage {
   height = 0;
   expire = 0;
   border_radius = 0;
-  name = "";
-  image_url = "";
+  name = '';
+  image_url = '';
   resize = true;
   clip: IClip | undefined = undefined;
   buffer: HTMLImageElement | null = null;
@@ -85,18 +85,6 @@ class CImage {
     ctx.restore();
   }
 
-  // getRotatePos(x: number, y: number, angle: number) {
-
-  //   // x = x * Math.cos(angle) * x - x * Math.sin(angle) * y + 0;
-  //   // y = y * Math.cos(angle) + x * Math.sin(angle);
-  //   // y = Math.sin(angle) * x + Math.cos(angle) * y + 0;
-
-  //   return {
-  //     x,
-  //     y,
-  //   };
-  // }
-
   clipRound(
     ctx: CanvasRenderingContext2D,
     width: number,
@@ -105,7 +93,7 @@ class CImage {
     y: number,
     radius: number | number[]
   ) {
-    const r = typeof radius === "number" ? radius : undefined;
+    const r = typeof radius === 'number' ? radius : undefined;
 
     ctx.beginPath();
     ctx.moveTo(x + (r || radius[1]), y);
