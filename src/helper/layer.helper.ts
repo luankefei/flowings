@@ -56,10 +56,8 @@ class LayerHelper {
       .map((item) => item.image_url)
       .filter((item) => item);
 
-    console.log("---------- load", paths);
     return loadImageList(paths).then(
       (res: PromiseSettledResult<HTMLImageElement>[]) => {
-        console.log("loadImage then");
         res.forEach((item, index) => {
           if (item.status === "fulfilled" && this.layers.images) {
             this.layers.images[index].buffer = item.value;
@@ -93,7 +91,6 @@ class LayerHelper {
     // 根据类型进行实例化
     const instancedLayers = lib.deepClone(this.layers);
 
-    console.log("instancedLayers", instancedLayers, this.layers);
     if (instancedLayers.images) {
       instancedLayers.images = instancedLayers.images.map(
         (item: IImage) => new CImage(item)
