@@ -32,8 +32,43 @@ class CImage {
     // 设置全局透明度
     ctx.globalAlpha = this.opacity;
 
+    // 圆角
+    if (this.border_radius) {
+      this.clipRound(
+        ctx,
+        this.width,
+        this.height,
+        this.x,
+        this.y,
+        this.border_radius
+      );
+    }
+
+    let startX = 0;
+    let startY = 0;
+    let imageWidth = this.buffer.width;
+    let imageHeight = this.buffer.height;
+
+    if (this.clip) {
+      startX = this.clip.x;
+      startY = this.clip.y;
+
+      imageWidth = imageWidth - (this.buffer.width - this.clip.width);
+      imageHeight = imageHeight - (this.buffer.height - this.clip.height);
+    }
+
     // 最好能把加载流程和绘图流程分割开
-    ctx.drawImage(this.buffer, this.x, this.y, this.width, this.height);
+    ctx.drawImage(
+      this.buffer,
+      startX,
+      startY,
+      imageWidth,
+      imageHeight,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
 
     ctx.restore();
   }
