@@ -16,6 +16,7 @@ class CImage {
   resize = true;
   clip: IClip | undefined = undefined;
   buffer: HTMLImageElement | null = null;
+  rotate = 0;
   opacity = 1;
 
   constructor(props: IImage) {
@@ -55,6 +56,11 @@ class CImage {
 
       imageWidth = imageWidth - (this.buffer.width - this.clip.width);
       imageHeight = imageHeight - (this.buffer.height - this.clip.height);
+    }
+
+    // 画布旋转
+    if (this.rotate) {
+      ctx.rotate(this.rotate);
     }
 
     // 最好能把加载流程和绘图流程分割开
