@@ -3,6 +3,7 @@ export default {
   // testEnvironment: "jest-environment-jsdom-fourteen",
   testMatch: ['<rootDir>/__test__/**/*.spec.js'],
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: { resources: 'usable' },
 
   // testEnvironment: "node",
   moduleFileExtensions: ['ts', 'js', 'json'],

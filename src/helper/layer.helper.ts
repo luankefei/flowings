@@ -49,12 +49,17 @@ class LayerHelper {
 
   // 加载所有静态资源
   load(): Promise<any> {
-    if (!this.layers.images || this.layers.images.length === 0) return;
+    if (!this.layers.images || this.layers.images.length === 0) {
+      return Promise.resolve([]);
+    }
     const paths = this.layers.images
       .map((item) => item.image_url)
       .filter((item) => item);
+
+    console.log("---------- load", paths);
     return loadImageList(paths).then(
       (res: PromiseSettledResult<HTMLImageElement>[]) => {
+        console.log("loadImage then");
         res.forEach((item, index) => {
           if (item.status === "fulfilled" && this.layers.images) {
             this.layers.images[index].buffer = item.value;
