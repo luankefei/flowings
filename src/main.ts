@@ -8,9 +8,9 @@ import { createImage } from './canvas/canvas';
 import LayerHelper from './helper/layer.helper';
 
 // from not-snow-mountain
-// import * as Painter from './painter';
+import * as Painter from './painter';
 import Sprite from './sprite';
-// import * as Executor from './executor';
+import * as Executor from './executor';
 
 class Flowings {
   canvas: HTMLCanvasElement;
@@ -61,12 +61,5 @@ function createCanvas(width: number, height: number) {
   return node;
 }
 
-export {
-  Flowings,
-  LayerHelper,
-  createImage,
-  // Painter,
-  // Executor,
-  Sprite,
-};
+export { Flowings, LayerHelper, createImage, Painter, Executor, Sprite };
 export default Flowings;
