@@ -1,5 +1,6 @@
 import LayerHelper from '../src/helper/layer.helper';
 import Flowings from '../src/main';
+import jestConfig from '../jest.config';
 
 describe('LayerHelper 用于多绘图元素的图层合并', () => {
   const layerHelper = new LayerHelper();
@@ -54,7 +55,18 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
     expect(sortedState).toBeTruthy();
   });
 
-  it('test render', () => {
-    expect(() => layerHelper.render(context)).not.toThrow();
-  });
+  // it('test render', async () => {
+  //   console.log('----- before');
+  //   await expect(layerHelper.load()).resolves.toEqual(true);
+  //   // ('object');
+  //   console.log('-----');
+
+  //   // layerHelper.load().finally(done);
+  //   // new Promise((resolve) => setTimeout(() => resolve(1), 100));
+  //   // await Promise.resolve(layerHelper.load())
+
+  //   // jest.runAllTimers();
+  //   // expect(data).resolves;
+  //   // expect(layerHelper.render(context)).not.toThrow();
+  // }, 5000);
 });

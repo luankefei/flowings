@@ -4,6 +4,7 @@
  *  用于多绘图元素的图层合并
  */
 import lib from "../lib";
+import { loadImageList } from "../loader/image.loader";
 
 import {
   ILayerWrapper,
@@ -46,6 +47,25 @@ class LayerHelper {
     });
   }
 
+  // 加载所有静态资源
+  load(): Promise<any> {
+    if (!this.layers.images || this.layers.images.length === 0) return;
+    const paths = this.layers.images
+      .map((item) => item.image_url)
+      .filter((item) => item);
+    return loadImageList(paths).then(
+      (res: PromiseSettledResult<HTMLImageElement>[]) => {
+        res.forEach((item, index) => {
+          if (item.status === "fulfilled" && this.layers.images) {
+            this.layers.images[index].buffer = item.value;
+          }
+        });
+
+        return Promise.resolve(res);
+      }
+    );
+  }
+
   // 根据z轴排序，其他元素位置保持不变
   sort() {
     const array = this.renderQueue.slice(0);
@@ -67,6 +87,8 @@ class LayerHelper {
 
     // 根据类型进行实例化
     const instancedLayers = lib.deepClone(this.layers);
+
+    console.log("instancedLayers", instancedLayers, this.layers);
     if (instancedLayers.images) {
       instancedLayers.images = instancedLayers.images.map(
         (item: IImage) => new CImage(item)

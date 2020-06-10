@@ -61,11 +61,11 @@ export interface IText {
 
 // Line: 线条元素的绘制配置
 export interface ILine {
-  x1;
-  y1;
-  x2;
-  y2;
-  z;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  z: number;
   line_width: number;
   color: string;
   dashed: boolean;
@@ -73,12 +73,12 @@ export interface ILine {
 
 // Rect: 矩形元素的绘制配置
 export interface IRect {
-  x;
-  y;
-  z;
-  width;
+  x: number;
+  y: number;
+  z: number;
+  width: number;
   height: number;
-  name;
+  name: number;
   background: string;
   radius: number[];
 }

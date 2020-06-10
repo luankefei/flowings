@@ -22,7 +22,13 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "suppressImplicitAnyIndexErrors": true,
-    "lib": ["dom", "es2015", "es2017.object", "esnext.asynciterable"],
+    "lib": [
+      "dom",
+      "es2015",
+      "es2017.object",
+      "esnext.asynciterable",
+      "es2020.promise"
+    ],
     "types": ["node"]
   },
   "exclude": [

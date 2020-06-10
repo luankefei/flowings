@@ -10,8 +10,8 @@ import { IBasic, ILayerWrapper } from "../interface/canvas.type";
 
 // createImage: 对外暴露的合并图层API
 function createImage(basic: IBasic, params: ILayerWrapper) {
-  // console.log("basic", basic);
-  // console.log("params", params);
+  console.log("basic", basic);
+  console.log("params", params);
 
   // 这里打算做成 layerHelper 的语法糖
   const helper = new LayerHelper();

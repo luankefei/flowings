@@ -15,38 +15,25 @@ class CImage {
   image_url = "";
   resize = true;
   clip: IClip | undefined = undefined;
-  image: HTMLImageElement | null = null;
+  // image: HTMLImageElement | null = null;
+  buffer: HTMLImageElement | null = null;
 
   constructor(props: IImage) {
     Object.keys(props).forEach((key) => (this[key] = props[key]));
   }
 
   draw(ctx: CanvasRenderingContext2D) {
+    if (this.buffer === null) {
+      throw new Error(`image ${this.image_url} was not loaded`);
+    }
+
     ctx.save();
 
-    const p: Promise<HTMLImageElement> = new Promise((resolve, reject) => {
-      const image = new Image();
-      image.crossOrigin = "Anonymous";
-      image.onload = () => resolve(image);
-      image.onerror = (err) => {
-        const imageNoCross = new Image();
-        imageNoCross.onload = () => resolve(image);
-        imageNoCross.onerror = () => reject(err);
-        imageNoCross.src = this.image_url;
-      };
-      image.src = this.image_url;
-    });
+    // 测试用流程，后面会把这个流程前置
+    // 最好能把加载流程和绘图流程分割开
+    ctx.drawImage(this.buffer, this.x, this.y, this.width, this.height);
 
-    p.then((image: HTMLImageElement) => {
-      this.image = image;
-
-      // 测试用流程，后面会把这个流程前置
-      // 最好能把加载流程和绘图流程分割开
-      console.log("draw image", this.image_url);
-      ctx.drawImage(image, this.x, this.y, this.width, this.height);
-
-      ctx.restore();
-    });
+    ctx.restore();
   }
 }
 

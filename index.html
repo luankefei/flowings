@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绘图测试</title>
+  </head>
+  <body>
+    <script src="./dist/index.js"></script>
+    <script>
+      (async function () {
+        console.log('Flowing', window, _);
+        const { canvas, context } = new _.Flowings();
+        const layerHelper = new _.LayerHelper();
+
+        layerHelper.layers = {
+          images: [
+            {
+              image_url:
+                'https://img.laiye.com/cLvgXicdq4RMvFgMeyiarFciatqCEPrkGudP9N6SceHhmA4Tl2unDvK4rNVCFroJZcfqMnUGvnBeDLaZpDYW0TRl9lxmD47gs70.jpg',
+              x: 48,
+              y: 48,
+              width: 150,
+              height: 150,
+              border_radius: 75,
+              resize: true,
+            },
+            {
+              x: 0,
+              width: 750,
+              height: 750,
+              image_url:
+                'https://img.laiye.com/checkinAlbum_20200316083737_htqvLACrln.jpg',
+              z: 1,
+            },
+          ],
+          texts: [
+            {
+              x: 6,
+              z: 2,
+              content: '我爱北京天安门',
+            },
+          ],
+        };
+
+        await layerHelper.load();
+        // layerHelper.prepareToRender();
+        layerHelper.render(context);
+      })();
+    </script>
+  </body>
+</html>

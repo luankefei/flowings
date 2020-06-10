@@ -5,6 +5,7 @@
  * 核心设计思路是，尽量贴近原生API。只做必要的限制，功能在原生 canvas 上进行增强
  */
 import { createImage } from "./canvas/canvas";
+import LayerHelper from "./helper/layer.helper";
 
 class Flowings {
   canvas: HTMLCanvasElement;
@@ -55,5 +56,5 @@ function createCanvas(width: number, height: number) {
   return node;
 }
 
-export { createImage };
+export { Flowings, LayerHelper, createImage };
 export default Flowings;

@@ -18,6 +18,7 @@ const config = {
     file: 'dist/index.js',
     format: 'iife',
     sourcemap: true,
+    exports: 'named',
   },
 };
 
