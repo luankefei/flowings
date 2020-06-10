@@ -55,26 +55,9 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
     expect(sortedState).toBeTruthy();
   });
 
-  it('test render', () => {
-    console.log('----- before');
-    // expect.assertions(1);
-    return layerHelper.load();
-    console.log('----', res);
-
-    // expect(res).not.toThrow();
-
-    // expect(
-    //   .then(() => layerHelper.render(context))
-    // ).resolves.not.toThrow();
-    // ('object');
-    console.log('-----');
-
-    // layerHelper.load().finally(done);
-    // new Promise((resolve) => setTimeout(() => resolve(1), 100));
-    // await Promise.resolve(layerHelper.load())
-
-    // jest.runAllTimers();
-    // expect(data).resolves;
-    // expect(layerHelper.render(context)).not.toThrow();
+  it('test render', async (done) => {
+    await layerHelper.load();
+    // layerHelper.render(context);
+    done();
   }, 1000);
 });
