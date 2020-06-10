@@ -34,6 +34,8 @@ export interface IImage {
   resize: boolean;
   clip: IClip | undefined;
   buffer: HTMLImageElement | undefined;
+  rotate: number;
+  opacity: number;
 }
 
 // Clip: 图片元素的裁剪配置

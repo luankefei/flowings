@@ -15,8 +15,8 @@ class CImage {
   image_url = "";
   resize = true;
   clip: IClip | undefined = undefined;
-  // image: HTMLImageElement | null = null;
   buffer: HTMLImageElement | null = null;
+  opacity = 1;
 
   constructor(props: IImage) {
     Object.keys(props).forEach((key) => (this[key] = props[key]));
@@ -29,11 +29,36 @@ class CImage {
 
     ctx.save();
 
-    // 测试用流程，后面会把这个流程前置
+    // 设置全局透明度
+    ctx.globalAlpha = this.opacity;
+
     // 最好能把加载流程和绘图流程分割开
     ctx.drawImage(this.buffer, this.x, this.y, this.width, this.height);
 
     ctx.restore();
+  }
+
+  clipRound(
+    ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    x: number,
+    y: number,
+    radius: number | number[]
+  ) {
+    const r = typeof radius === "number" ? radius : undefined;
+
+    ctx.beginPath();
+    ctx.moveTo(x + (r || radius[1]), y);
+
+    // 右上 -> 右下 -> 左下 -> 左上
+    ctx.arcTo(x + width, y, x + width, y + height, r || radius[1]);
+    ctx.arcTo(x + width, y + height, x, y + height, r || radius[2]);
+    ctx.arcTo(x, y + height, x, y, r || radius[3]);
+    ctx.arcTo(x, y, x + width, y, r || radius[0]);
+
+    ctx.closePath();
+    ctx.clip();
   }
 }
 
