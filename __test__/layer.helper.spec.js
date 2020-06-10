@@ -26,8 +26,13 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
       images: [
         {
           x: 0,
+          width: 100,
+          height: 100,
           image_url:
             'https://img.laiye.com/checkinAlbum_20200316083737_htqvLACrln.jpg',
+          rotate: 90,
+          opacity: 0.2,
+          border_radius: 25,
         },
         { x: 1, z: 100 },
         { x: 2, z: 1 },

@@ -3,8 +3,8 @@
  *
  *  用于多绘图元素的图层合并
  */
-import lib from "../lib";
-import { loadImageList } from "../loader/image.loader";
+import lib from '../lib';
+import { loadImageList } from '../loader/image.loader';
 
 import {
   ILayerWrapper,
@@ -12,10 +12,10 @@ import {
   IDrawElement,
   IImage,
   IText,
-} from "../interface/canvas.type";
+} from '../interface/canvas.type';
 
-import CImage from "../canvas/image";
-import CText from "../canvas/text";
+import CImage from '../canvas/image';
+import CText from '../canvas/text';
 
 class LayerHelper {
   layers: ILayerWrapper;
@@ -32,12 +32,12 @@ class LayerHelper {
     // 只允许修改 layers
     return new Proxy(this, {
       get(target, name) {
-        const privates = ["locked"];
+        const privates = ['locked'];
         if (privates.includes(name.toString())) return undefined;
         return Reflect.get(target, name);
       },
       set(target, name, value) {
-        const setable = ["layers", "locked", "sortedState"];
+        const setable = ['layers', 'locked', 'sortedState'];
         if (!setable.includes(name.toString()) && target.locked) {
           throw new TypeError(`cannot set the ${name.toString()} property`);
         }
@@ -59,7 +59,7 @@ class LayerHelper {
     return loadImageList(paths).then(
       (res: PromiseSettledResult<HTMLImageElement>[]) => {
         res.forEach((item, index) => {
-          if (item.status === "fulfilled" && this.layers.images) {
+          if (item.status === 'fulfilled' && this.layers.images) {
             this.layers.images[index].buffer = item.value;
           }
         });
@@ -105,7 +105,7 @@ class LayerHelper {
 
     // 从layer生成渲染队列, 默认先画图片，其次矩形 > 线条 > 文字
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
-      const queue = ["images", "rects", "lines", "texts"];
+      const queue = ['images', 'rects', 'lines', 'texts'];
       this.renderQueue = queue.reduce(
         (prev, key) => prev.concat(instancedLayers[key] || []),
         []
