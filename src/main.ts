@@ -4,13 +4,13 @@
  * 绘图库入口文件
  * 核心设计思路是，尽量贴近原生API。只做必要的限制，功能在原生 canvas 上进行增强
  */
-import { createImage } from './canvas/canvas';
-import LayerHelper from './helper/layer.helper';
+import { createImage } from "./canvas/canvas";
+import LayerHelper from "./helper/layer.helper";
 
 // from not-snow-mountain
-import * as Painter from './painter';
-import Sprite from './sprite';
-import * as Executor from './executor';
+import * as Painter from "./painter";
+import Sprite from "./sprite";
+import * as Executor from "./executor";
 
 class Flowings {
   canvas: HTMLCanvasElement;
@@ -18,7 +18,7 @@ class Flowings {
   sprites: any[];
 
   // 默认全屏创建
-  constructor(id = '') {
+  constructor(id = "") {
     this.canvas = id
       ? getCanvasElementById(id)
       : createCanvas(screen.availWidth, screen.availHeight);
@@ -41,10 +41,10 @@ function getCanvasElementById(id: string) {
 
 // 获取绘图上下文
 function getCanvasRenderingContext2D(node: HTMLCanvasElement) {
-  const context = node.getContext('2d');
+  const context = node.getContext("2d");
   if (context === null) {
     throw new Error(
-      'This browser does not support 2-dimensional canvas rendering contexts.'
+      "This browser does not support 2-dimensional canvas rendering contexts."
     );
   }
   return context;
@@ -52,8 +52,8 @@ function getCanvasRenderingContext2D(node: HTMLCanvasElement) {
 
 // 创建画布
 function createCanvas(width: number, height: number) {
-  const node = document.createElement('canvas');
-  node.id = 'canvas';
+  const node = document.createElement("canvas");
+  node.id = "canvas";
   node.width = width || screen.width;
   node.height = height || screen.height;
   document.body.appendChild(node);

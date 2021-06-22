@@ -1,4 +1,4 @@
-import Sprite from '../src/sprite';
+import Sprite from "../src/sprite";
 
 const runInPlace = {
   lastAdvance: 0,

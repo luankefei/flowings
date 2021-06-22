@@ -1,4 +1,4 @@
-import Sprite from './sprite';
+import Sprite from "./sprite";
 
 class ImagePainter {
   image: HTMLImageElement;
@@ -78,13 +78,13 @@ class BallPainter {
       false
     );
     context.clip();
-    context.shadowColor = 'rgb(0,0,0)';
+    context.shadowColor = "rgb(0,0,0)";
     context.shadowOffsetX = -4;
     context.shadowOffsetY = -4;
     context.shadowBlur = 8;
     context.lineWidth = 2;
-    context.strokeStyle = 'rgb(100,100,195)';
-    context.fillStyle = 'rgba(30, 144,255,0.15)';
+    context.strokeStyle = "rgb(100,100,195)";
+    context.fillStyle = "rgba(30, 144,255,0.15)";
     context.fill();
     context.stroke();
   }

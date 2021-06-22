@@ -1,23 +1,22 @@
-import LayerHelper from '../src/helper/layer.helper';
-import Flowings from '../src/main';
-import jestConfig from '../jest.config';
+import LayerHelper from "../src/helper/layer.helper";
+import Flowings from "../src/main";
+import jestConfig from "../jest.config";
 
-describe('LayerHelper 用于多绘图元素的图层合并', () => {
+describe("LayerHelper 用于多绘图元素的图层合并", () => {
   const layerHelper = new LayerHelper();
   const { canvas, context } = new Flowings();
 
-  it('the instance has properties renderQueue, typed array', () => {
+  it("the instance has properties renderQueue, typed array", () => {
     expect(Array.isArray(layerHelper.renderQueue)).toBeTruthy();
   });
 
-  it('the instance has property layers, is plain object', () => {
+  it("the instance has property layers, is plain object", () => {
     const obj = layerHelper.layers;
-    const isPlainObject =
-      typeof obj === 'object' && obj !== null && obj.constructor === Object;
+    const isPlainObject = typeof obj === "object" && obj !== null && obj.constructor === Object;
     expect(isPlainObject).toBeTruthy();
   });
 
-  it('lock is a private property of layerHelper', () => {
+  it("lock is a private property of layerHelper", () => {
     expect(layerHelper.locked).toBe(undefined);
   });
 
@@ -28,8 +27,7 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
           x: 0,
           width: 100,
           height: 100,
-          image_url:
-            'https://img.laiye.com/checkinAlbum_20200316083737_htqvLACrln.jpg',
+          image_url: "https://img.laiye.com/checkinAlbum_20200316083737_htqvLACrln.jpg",
           rotate: 90,
           opacity: 0.2,
           border_radius: 25,
@@ -44,7 +42,17 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
         {
           x: 6,
           z: 2,
-          content: '我爱北京天安门',
+          content: "我爱北京天安门",
+        },
+      ],
+      lines: [
+        {
+          x1: 10,
+          x2: 500,
+          y1: 10,
+          y2: 10,
+          color: "blue",
+          dashed: true,
         },
       ],
     };
@@ -52,15 +60,13 @@ describe('LayerHelper 用于多绘图元素的图层合并', () => {
     layerHelper.prepareToRender();
 
     const sortedState = layerHelper.renderQueue.every(
-      (item, index) =>
-        index === layerHelper.renderQueue.length - 1 ||
-        item.z >= layerHelper.renderQueue[index + 1].z
+      (item, index) => index === layerHelper.renderQueue.length - 1 || item.z >= layerHelper.renderQueue[index + 1].z
     );
 
     expect(sortedState).toBeTruthy();
   });
 
-  it('test render', async (done) => {
+  it("test render", async (done) => {
     await layerHelper.load();
     // layerHelper.render(context);
     done();
