@@ -67,6 +67,7 @@ export interface ILine {
   y1: number;
   x2: number;
   y2: number;
+  z: number;
   line_width: number;
   color: string;
   dashed: boolean;

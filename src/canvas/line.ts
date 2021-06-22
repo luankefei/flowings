@@ -5,6 +5,7 @@
 import { ILine } from "../interface/canvas.type";
 
 class CLine implements ILine {
+  z = 0;
   x1 = 0;
   y1 = 0;
   x2 = 0;
