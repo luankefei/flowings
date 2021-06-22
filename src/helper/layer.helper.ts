@@ -12,10 +12,12 @@ import {
   IDrawElement,
   IImage,
   IText,
+  ILine,
 } from "../interface/canvas.type";
 
 import CImage from "../canvas/image";
 import CText from "../canvas/text";
+import CLine from "../canvas/line";
 
 class LayerHelper {
   layers: ILayerWrapper;
@@ -100,6 +102,12 @@ class LayerHelper {
     if (instancedLayers.texts) {
       instancedLayers.texts = instancedLayers.texts.map(
         (item: IText) => new CText(item)
+      );
+    }
+
+    if (instancedLayers.texts) {
+      instancedLayers.lines = instancedLayers.lines.map(
+        (item: ILine) => new CLine(item)
       );
     }
 
