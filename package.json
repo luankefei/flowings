@@ -18,15 +18,7 @@
     "format": "prettier --parser typescript --write \"src/**/*.ts\"",
     "lint:staged": "lint-staged",
     "upver": "standard-version",
-    "dev": "npm run start:dev",
-    "start": "npm run build:prod && node dist/index.js",
-    "start:pre": "npm run build:pre && MODE=pre node dist/index.js",
-    "start:dev": "better-npm-run build:dev && better-npm-run start:dev",
-    "build": "node rollup.config.js",
-    "build:watch": "webpack --watch",
-    "build:prod": "better-npm-run build:prod",
-    "build:pre": "better-npm-run build:pre",
-    "build:dev": "better-npm-run build:dev"
+    "build": "node rollup.config.js"
   },
   "lint-staged": {
     "src/**/*.ts": [
