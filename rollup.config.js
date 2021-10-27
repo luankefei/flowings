@@ -1,24 +1,24 @@
-import fs from 'fs';
-import { rollup } from 'rollup';
-import typescript from '@rollup/plugin-typescript';
+import fs from "fs";
+import { rollup } from "rollup";
+import typescript from "@rollup/plugin-typescript";
 // import sourcemaps from "rollup-plugin-sourcemaps";
 
 // rollup.config.js
 const config = {
-  input: 'src/main.ts',
+  input: "src/main.ts",
   plugins: [
     typescript({
-      exclude: 'node_modules/**',
-      module: 'esnext',
+      exclude: "node_modules/**",
+      module: "esnext",
     }),
     // sourcemaps(),
   ],
   output: {
-    name: '_',
-    file: 'dist/index.js',
-    format: 'iife',
+    name: "_",
+    file: "dist/flowings.js",
+    format: "iife",
     sourcemap: true,
-    exports: 'named',
+    exports: "named",
   },
 };
 
@@ -30,7 +30,7 @@ export default rollup(config)
       fs.writeFile(config.output.file, code, (err) => {
         if (err) return reject(err);
 
-        console.log('TODO: without gzipped');
+        console.log("TODO: without gzipped");
         resolve();
       });
     });
