@@ -4,9 +4,9 @@ libray to frontend image synthesis & 2d canvas renderer
 
 ### install
 
-| OS   | Command                                                          |
-| ---- | ---------------------------------------------------------------- |
-| OS X | `brew install pkg-config cairo pango libpng jpeg giflib librsvg` |
+| OS   | Command                                                                            |
+| ---- | ---------------------------------------------------------------------------------- |
+| OS X | `brew install pkg-config cairo pango libpng jpeg giflib librsvg & npm i -g canvas` |
 
 ### TODO
 
