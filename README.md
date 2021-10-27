@@ -2,6 +2,12 @@
 
 libray to frontend image synthesis & 2d canvas renderer
 
+### install
+
+| OS   | Command                                                          |
+| ---- | ---------------------------------------------------------------- |
+| OS X | `brew install pkg-config cairo pango libpng jpeg giflib librsvg` |
+
 ### TODO
 
 接下来会先做功能模块划分和 API 设计，目前已知至少会支持以下特性

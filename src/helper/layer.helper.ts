@@ -145,6 +145,8 @@ class LayerHelper {
     this.locked = false;
     this.renderQueue = [];
     this.locked = true;
+
+    return this;
   }
 }
 
