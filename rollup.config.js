@@ -14,7 +14,7 @@ const config = {
     // sourcemaps(),
   ],
   output: {
-    name: "_",
+    name: "$",
     file: "dist/flowings.js",
     format: "iife",
     sourcemap: true,
