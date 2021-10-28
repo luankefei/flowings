@@ -105,7 +105,7 @@ class LayerHelper {
       );
     }
 
-    if (instancedLayers.texts) {
+    if (instancedLayers.lines) {
       instancedLayers.lines = instancedLayers.lines.map(
         (item: ILine) => new CLine(item)
       );
