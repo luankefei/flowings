@@ -16,20 +16,26 @@ class Flowings {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
   sprites: any[];
+  dpr: number;
 
   // 默认全屏创建
   constructor(id = "") {
+    // Get the device pixel ratio, falling back to 1.
+    this.dpr = window.devicePixelRatio || 1;
     this.canvas = id
       ? getCanvasElementById(id)
-      : createCanvas(screen.availWidth, screen.availHeight);
+      : createCanvas(screen.availWidth, screen.availHeight, this.dpr);
     this.context = getCanvasRenderingContext2D(this.canvas);
     this.sprites = [];
+
+    // Scale all drawing operations by the dpr, so you don't have to worry about the difference.
+    this.context.scale(this.dpr, this.dpr);
   }
 }
 
+// TODO: 小程序的适配
 // 从已存在的画布初始化
 function getCanvasElementById(id: string) {
-  // TODO: 小程序的适配
   const canvas = document.getElementById(id) as HTMLCanvasElement;
   if (!canvas || canvas.constructor !== HTMLCanvasElement) {
     throw new TypeError(
@@ -51,11 +57,11 @@ function getCanvasRenderingContext2D(node: HTMLCanvasElement) {
 }
 
 // 创建画布
-function createCanvas(width: number, height: number) {
+function createCanvas(width: number, height: number, dpr: number) {
   const node = document.createElement("canvas");
   node.id = "canvas";
-  node.width = width || screen.width;
-  node.height = height || screen.height;
+  node.width = (width || screen.width) * dpr;
+  node.height = (height || screen.height) * dpr;
   document.body.appendChild(node);
 
   return node;
