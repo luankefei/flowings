@@ -1,6 +1,6 @@
 {
   "name": "flowings",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "libray to frontend image synthesis & 2d canvas renderer",
   "main": "dist/index.js",
   "exports": "dist/index.js",
@@ -18,7 +18,7 @@
     "format": "prettier --parser typescript --write \"src/**/*.ts\"",
     "lint:staged": "lint-staged",
     "upver": "standard-version",
-    "build": "node rollup.config.js"
+    "build": "node rollup.config.js & cp dist/flowings.js ../me/public"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -58,6 +58,7 @@
     "rollup": "^2.13.1",
     "rollup-jest": "^0.0.2",
     "rollup-plugin-sourcemaps": "^0.6.2",
+    "standard-version": "^9.3.2",
     "ts-jest": "^26.1.0",
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2",
