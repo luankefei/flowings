@@ -30,7 +30,9 @@ class CText implements IText {
     ctx.fillStyle = this.color;
 
     // 按照对齐方式，修正坐标起点
-    if (this.align !== "left") this.x = this.align === "center" ? this.x + this.limit / 2 : this.x + this.limit;
+    if (this.align !== "left")
+      this.x =
+        this.align === "center" ? this.x + this.limit / 2 : this.x + this.limit;
     if (!this.limit) return ctx.fillText(this.content, this.x, this.y);
 
     // 多行文本渲染
@@ -43,7 +45,11 @@ class CText implements IText {
 
     for (let i = 0; i < lineCount; i += 1) {
       const line = this.content.substring(limit * i, limit * i + limit);
-      ctx.fillText(line, this.x, this.y + i * this.line_height + (this.line_height - this.size) / 2);
+      ctx.fillText(
+        line,
+        this.x,
+        this.y + i * this.line_height + (this.line_height - this.size) / 2
+      );
     }
 
     ctx.restore();
