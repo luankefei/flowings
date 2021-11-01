@@ -59,9 +59,15 @@ function getCanvasRenderingContext2D(node: HTMLCanvasElement) {
 // 创建画布
 function createCanvas(width: number, height: number, dpr: number) {
   const node = document.createElement("canvas");
+  const w = width || screen.width;
+  const h = height || screen.height;
+
   node.id = "canvas";
-  node.width = (width || screen.width) * dpr;
-  node.height = (height || screen.height) * dpr;
+  node.style.width = `${w}px`;
+  node.style.height = `${h}px`;
+  node.width = width * dpr;
+  node.height = height * dpr;
+
   document.body.appendChild(node);
 
   return node;

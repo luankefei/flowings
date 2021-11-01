@@ -18,7 +18,8 @@
     "format": "prettier --parser typescript --write \"src/**/*.ts\"",
     "lint:staged": "lint-staged",
     "upver": "standard-version",
-    "build": "node rollup.config.js & cp dist/flowings.js ../me/public"
+    "build": "node rollup.config.js",
+    "cp": "cp dist/flowings.js ../me/public"
   },
   "lint-staged": {
     "src/**/*.ts": [

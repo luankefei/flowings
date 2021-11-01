@@ -26,7 +26,12 @@ class LayerHelper {
   private locked: boolean; // this only enforced within the compiler
 
   constructor() {
-    this.layers = {};
+    this.layers = {
+      // images: [],
+      // rects: [],
+      // lines: [],
+      // texts: [],
+    };
     this.renderQueue = [];
     this.sortedState = false;
     this.locked = true;
@@ -54,10 +59,11 @@ class LayerHelper {
     if (!this.layers.images || this.layers.images.length === 0) {
       return Promise.resolve([]);
     }
+    // console.log("-----------", this.layers.images);
     const paths = this.layers.images
       .map((item) => item.image_url)
       .filter((item) => item);
-
+    // console.log("-----------", paths);
     return loadImageList(paths).then(
       (res: PromiseSettledResult<HTMLImageElement>[]) => {
         res.forEach((item, index) => {
@@ -93,19 +99,19 @@ class LayerHelper {
     // 根据类型进行实例化
     const instancedLayers = lib.deepClone(this.layers);
 
-    if (instancedLayers.images) {
+    if (instancedLayers.images && instancedLayers.images.length) {
       instancedLayers.images = instancedLayers.images.map(
         (item: IImage) => new CImage(item)
       );
     }
 
-    if (instancedLayers.texts) {
+    if (instancedLayers.texts && instancedLayers.texts.length) {
       instancedLayers.texts = instancedLayers.texts.map(
         (item: IText) => new CText(item)
       );
     }
 
-    if (instancedLayers.lines) {
+    if (instancedLayers.lines && instancedLayers.lines.length) {
       instancedLayers.lines = instancedLayers.lines.map(
         (item: ILine) => new CLine(item)
       );

@@ -53,8 +53,9 @@ export interface IText {
   z: number;
   size: number;
   line_height: number;
-  font_style: number;
-  align: number;
+  font_style: string;
+  font_weight: string;
+  align: CanvasTextAlign;
   limit: number;
   color: string;
   font_family: string;
