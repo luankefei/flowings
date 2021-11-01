@@ -34,7 +34,8 @@ class CText implements IText {
     if (!this.limit) return ctx.fillText(this.content, this.x, this.y);
 
     // 多行文本渲染
-    const charWidth = ctx.measureText(this.content).width / this.content.length;
+    const measureText = ctx.measureText(this.content);
+    const charWidth = measureText.width / this.content.length;
 
     // 按照当前文字宽度计算余数矫正一次
     const limit = Math.floor(this.limit / charWidth);
@@ -42,7 +43,7 @@ class CText implements IText {
 
     for (let i = 0; i < lineCount; i += 1) {
       const line = this.content.substring(limit * i, limit * i + limit);
-      ctx.fillText(line, this.x, this.y + i * this.line_height);
+      ctx.fillText(line, this.x, this.y + i * this.line_height + (this.line_height - this.size) / 2);
     }
 
     ctx.restore();

@@ -6,14 +6,7 @@
 import lib from "../lib";
 import { loadImageList } from "../loader/image.loader";
 
-import {
-  ILayerWrapper,
-  ILayerElement,
-  IDrawElement,
-  IImage,
-  IText,
-  ILine,
-} from "../interface/canvas.type";
+import { ILayerWrapper, ILayerElement, IDrawElement, IImage, IText, ILine } from "../interface/canvas.type";
 
 import CImage from "../canvas/image";
 import CText from "../canvas/text";
@@ -27,10 +20,10 @@ class LayerHelper {
 
   constructor() {
     this.layers = {
-      // images: [],
-      // rects: [],
-      // lines: [],
-      // texts: [],
+      images: [],
+      rects: [],
+      lines: [],
+      texts: [],
     };
     this.renderQueue = [];
     this.sortedState = false;
@@ -60,21 +53,17 @@ class LayerHelper {
       return Promise.resolve([]);
     }
     // console.log("-----------", this.layers.images);
-    const paths = this.layers.images
-      .map((item) => item.image_url)
-      .filter((item) => item);
+    const paths = this.layers.images.map((item) => item.image_url).filter((item) => item);
     // console.log("-----------", paths);
-    return loadImageList(paths).then(
-      (res: PromiseSettledResult<HTMLImageElement>[]) => {
-        res.forEach((item, index) => {
-          if (item.status === "fulfilled" && this.layers.images) {
-            this.layers.images[index].buffer = item.value;
-          }
-        });
+    return loadImageList(paths).then((res: PromiseSettledResult<HTMLImageElement>[]) => {
+      res.forEach((item, index) => {
+        if (item.status === "fulfilled" && this.layers.images) {
+          this.layers.images[index].buffer = item.value;
+        }
+      });
 
-        return Promise.resolve(res);
-      }
-    );
+      return Promise.resolve(res);
+    });
   }
 
   // 根据z轴排序，其他元素位置保持不变
@@ -100,30 +89,21 @@ class LayerHelper {
     const instancedLayers = lib.deepClone(this.layers);
 
     if (instancedLayers.images && instancedLayers.images.length) {
-      instancedLayers.images = instancedLayers.images.map(
-        (item: IImage) => new CImage(item)
-      );
+      instancedLayers.images = instancedLayers.images.map((item: IImage) => new CImage(item));
     }
 
     if (instancedLayers.texts && instancedLayers.texts.length) {
-      instancedLayers.texts = instancedLayers.texts.map(
-        (item: IText) => new CText(item)
-      );
+      instancedLayers.texts = instancedLayers.texts.map((item: IText) => new CText(item));
     }
 
     if (instancedLayers.lines && instancedLayers.lines.length) {
-      instancedLayers.lines = instancedLayers.lines.map(
-        (item: ILine) => new CLine(item)
-      );
+      instancedLayers.lines = instancedLayers.lines.map((item: ILine) => new CLine(item));
     }
 
     // 从layer生成渲染队列, 默认先画图片，其次矩形 > 线条 > 文字
     if (!this.renderQueue.length && Object.keys(this.layers).length) {
       const queue = ["images", "rects", "lines", "texts"];
-      this.renderQueue = queue.reduce(
-        (prev, key) => prev.concat(instancedLayers[key] || []),
-        []
-      );
+      this.renderQueue = queue.reduce((prev, key) => prev.concat(instancedLayers[key] || []), []);
     }
 
     // 对渲染队列进行排序
